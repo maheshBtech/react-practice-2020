@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gridDocument</title>
+    <style>
+        .gridContainer{
+            display:grid;
+            grid-template-columns: 200px 250px;
+            grid-auto-rows:minmax(150px,auto);
+            /* grid-template-rows:200px 150px */
+            /* grid-row-gap:10px;
+            grid-column-gap:10px; */
+            grid-gap:10px;
+            justify-content: center;
+        }
+        .grid{
+            background-color: aquamarine;
+            padding:10px;
+        }
+        .box1{
+            grid-column:span 2;
+        }
+        .box2{
+            grid-row:span 2;
+        }
+        .box4{
+            grid-row: span 3;
+
+        }
+        .box7{
+            grid-column:span 2
+        }
+      
+    </style>
+</head>
+<body>
+    <div class = "gridContainer">
+        <div class="grid box1">conatainer 1  </div>
+        <div class="grid box2">container 2 </div>
+        <div class = "grid box3">container 3</div>
+        <div class="grid box4">container 4 </div>
+        <div class="grid box5">container 5</div>
+        <div class = "grid box6">container 6</div>
+        <div class = "grid box7">container 7</div>
+        
+    </div>
+    
+</body>
+</html>

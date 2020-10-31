@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display flex</title>
+    <style>
+        .container{
+            border:0.2px solid gray;
+            /* height: 200px; */
+            /* padding:20px;
+            display:flex;
+            flex-wrap: wrap;
+            background-color: wheat;
+            justify-content: space-around; */
+            /* align-items: flex-start; */
+            /* flex-direction:column; */
+
+
+
+            /* display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-wrap:wrap */
+
+            display:flex;
+            flex-wrap:wrap;
+            flex-direction: column;
+            align-items: center;
+
+
+
+        }
+        .flexBox-item{
+            border:0.2px solid gray;
+            margin:10px;
+            width:150px;
+            background-color: thistle;
+        }
+
+
+        .d1{
+            min-height: 100px;
+            flex-shrink:0;
+           
+        }
+        .d2{
+             min-height: 150px;
+             flex-grow:1;
+        }
+        .d3{
+             min-height: 200px;
+             /* flex-grow: 1; */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class = " flexBox-item d1">
+           
+        </div>
+        <div class="flexBox-item d2">
+           
+        </div>
+        <div class="flexBox-item d3">
+           
+        </div>
+
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,19 @@
+*{
+    margin:0;
+    padding:0
+}
+.modal{
+    display: flex;
+    justify-content: center;
+    border:0.1px solid gray;
+    padding:20px;
+    border-radius: 5px;
+    margin:100px 50px 50px 50px;
+}
+.modalWrapper{
+    padding:20px;
+    box-shadow: 0 0 3px gray;
+}
+table{
+    border-collapse: collapse;
+}
