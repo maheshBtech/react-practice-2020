@@ -1,0 +1,193 @@
+Debouncing:
+
+Here the concept debouncing is used  to optimize the performance
+behalf of coninuously invoking the function we can invoke it with a certain limit
+
+let count = 1
+function clickk(){
+    console.log(count++)
+}
+
+function magicFun(fn,d){
+     let timer ;
+    return function(args){
+       clearTimeout(timer)
+       timer =  setTimeout(() =>{
+            fn.apply(args)
+        },d)
+    }
+
+}
+
+const fun = magicFun(clickk,3000)
+
+Throtallilng:
+
+Here the concept throtalling is used  to optimize the performance
+behalf of coninuously invoking the function we can invoke it with a certain limit of time
+
+let count = 1
+function clickk(){
+    console.log(count++)
+}
+function magicFun(fn,d){
+     let timer = true ;
+    return function(args){
+       if(timer)
+       {
+           fn.apply(args)
+           timer = false;
+            setTimeout(() =>{
+                timer = true;
+        },d)
+       }
+      
+    }
+
+const fun = magicFun(clickk,3000)
+
+Bubbling and tickling or capturing:
+
+in bubbling concept the events will be triggered  from bottom to top of hierarchy.
+
+
+
+document.querySelector("#grandparent")
+  .addEventListener('click', (e) => {
+    console.log("Grandparent Clicked!");
+    //e.stopPropagation();
+  }, true);
+
+  document.querySelector("#parent")
+  .addEventListener('click', (e) => {
+    console.log("Parent Clicked!");
+  }, true);
+  //usecapture
+
+  document.querySelector("#child")
+  .addEventListener('click', (e) => {
+    console.log("Child Clicked!");
+  }, true);
+  
+  event deligation:
+  states that insted of attaching handlers to each and every child elements rather we can attach a single handler to the parent
+  
+document.querySelector("#main").addEventListener("click",(e) =>{
+    console.log(e.target.id)
+    this.location.href = "/"+e.target.id
+})
+
+ <div id = "main">
+        <li id = "id1" >mahesh</li>
+        <li id = "id2" >suresh</li>
+        <li id = "id3" >subbu</li>
+        <li id = "id4" >param</li>
+    </div>
+
+
+
+//const fun = (x) =>(y) =>y?fun(x+y):x
+
+function fun(x){
+    return function(y){
+        if(y)
+        {
+            return fun(x+y)
+        }
+        else{
+            return x
+        }
+    }
+}
+  
+
+
+console.log(fun(2)(3)(4)(5)(6)())
+
+console.log("dad")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
