@@ -57,16 +57,12 @@ console.log(show("hello.html"))
 /*
 checking the performance of substr,substring,slice
 
-here in the slice method if the start index is grater 
-then end index or equal to 
-it return empty index;
-i forget to write that silce can return an entire array,
-where as the substr and sunstring can not return the entire the 
-entire the array it reads only string
+here in the slice method if the starting index is grater then ending index it return empty value. and if start and index are equal it return empty string.
+and if start index is negative the end index should also be negative.
+if start and end index are positive or neative the start index should be smaller than end index.
+i forget to write that silce can return an entire array , where as the substr and substring can not return the entire the array it reads only string
 
-as same as slice the substring will not return any string 
-if the start index and end index is same 
-and if the start index is grater the end index the sub string will 
+as same as slice, subttr will not return any value if the starting index and the ending index are same and if the start index is grater the end index the sub string will 
 return the value
 
 and finally comming to substr function in this function 
