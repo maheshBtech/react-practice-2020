@@ -1,0 +1,73 @@
+regular expressions by which we can validate the value:
+
+\w word characters
+\W not word characters
+\d digits
+\D not digita
+\s whitespaces (spaces,tab,newline)
+\S not whitespaces
+
+\b word boundary
+\B not a word boundary
+^ begning of a string
+$ end of a string
+
+[] matches characters in brackets
+[^ ] matches characters not in the brackets
+| either or
+() group
+
+quantifers
+* 0 or more;
++ 1 or more
+? optional 0 or one
+{3} exact number
+{3,4} range of  numbers
+
+
+mbl validation:
+
+ const fun = () =>{
+     const val = document.getElementById("input").value;
+     let reg = /^[7-9][0-9]{9}$/gi
+     [] case cell is for single character
+     {max} to assign no of values
+     {min,max}
+     []+ => operator + indicates infinity
+     here ^ sign indicates that the starting point of the value
+     and $ sign indicates that ending point of the string
+     char g indicates that to search for entire value;
+     i for case-insensitive
+     ? for optional
+     
+     if(reg.test(val))
+     {
+         document.getElementById("label1").innerHTML = "Valid"
+         document.getElementById("label1").style.color="green";
+          document.getElementById("label1").style.visibility.visible;
+     }
+     else{
+         
+         document.getElementById("label1").style.visibility="visible";
+         document.getElementById("label1").style.color="red";
+     }
+ }
+
+email validations:
+
+const fun = () =>{
+     const val = document.getElementById("input").value;
+     let reg = /^([a-z A-Z 1-9\.-]+)@([a-z]{5,8}).([a-z]{3})(.[a-z]{2,3})?$/
+     if(reg.test(val))
+     {
+          document.getElementById("label1").innerHTML = "Valid"
+          document.getElementById("label1").style.visibility.visible;
+         document.getElementById("label1").style.color="green";
+        
+     }
+     else{
+         document.getElementById("label1").innerHTML = "In Valid"
+         document.getElementById("label1").style.visibility="visible";
+         document.getElementById("label1").style.color="red";
+     }
+
