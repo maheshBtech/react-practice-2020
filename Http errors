@@ -1,0 +1,11 @@
+1xx -> informational error;
+2xx-> successful rel;
+3xx->redirection;
+4xx->client side error;
+5xx -> server error;
+
+400->bad request;
+401->unauthorised;
+403->forbidden;
+404 -> not found;
+408 -> request tome out;
