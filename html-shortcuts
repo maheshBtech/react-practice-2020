@@ -6,6 +6,11 @@ to create nested div in html
 div#p1>.p2
 
 to create divs inside divs
-
 .p1>.p2+.p3
+
+to create multiple divs
+.ui>#child*3
+
+
+to create random  char "lorem"
 
