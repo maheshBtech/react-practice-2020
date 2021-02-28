@@ -1,0 +1,11 @@
+link:css
+ to link the css file
+
+to create nested div in html
+.p1>.p2>.p3
+div#p1>.p2
+
+to create divs inside divs
+
+.p1>.p2+.p3
+
