@@ -1,0 +1,54 @@
+// connection
+
+const mongoClient = require("mongodb").MongoClient;
+mongoClient.connect("mongodb://mmadmin:mmtax123@3.14.178.144:27017/mmtax",{useNewUrlParser: true, useUnifiedTopology: true},(err,client)=>{
+    if(err)
+    {
+        throw err;
+    }
+    else{
+        global.DB = client.db("mmtax");
+        console.log("Data base is connected");  
+        
+    }
+})
+
+module.exports = mongoClient
+
+
+
+//example
+const router = require("express").Router();
+
+router.get("/getCases",async(req,res)=>{
+    try{
+        
+        DB.collection("clients").aggregate([
+            {
+                $match:{_id:69}
+            },
+            {
+                $lookup:{ from:"cases",localField:"_id",foreignField:"client_id",as : "client" }
+            },
+            {
+                $unwind:"$client"
+            },
+           
+        ])
+        .toArray((err,rel)=>{
+            if(err)
+            {
+                throw err;
+            }
+            else{
+                res.send(rel)
+            }
+        })
+    }
+    catch(err)
+    {
+        throw err
+    }
+})
+
+module.exports = router;
