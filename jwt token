@@ -33,6 +33,14 @@ app.post("/login",(req,res)=>{
 app.get("/post", authentication,(req,res)=>{
 
     res.status(201).send(db.filter(i=>i.email == req.user.email));
+    
+    
+    
+    const generateOTP = () => {
+    let otp = Math.random() * 1000000;
+    otp = parseInt(otp);
+    return otp;
+}
 })
 
 function authentication(req, res, next) {
