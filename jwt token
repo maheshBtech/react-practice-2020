@@ -86,6 +86,12 @@ function authentication(req, res, next) {
 //         res.redirect(`${__dirname}/pages/register.ejs`);
 //     }
   
+  
+   if(req.originalUrl === '/' || req.originalUrl === '/ping' || req.originalUrl === '/login' || req.originalUrl === '/auth' || req.originalUrl === '/logout' || req.originalUrl === '/ping/' || req.originalUrl === '/login/' || req.originalUrl === '/auth/' || req.originalUrl === '/logout/' 
+        || req.originalUrl === '/noAuth/getAuthenticationCodeDetails' || req.originalUrl === '/noAuth/addProviderFromProviderSignup' || req.originalUrl === '/noAuth/deactivateAuthenticationCode')
+    {
+        return  next();
+    }
 // })
 
 app.listen(5000,()=>console.log("server is running on port 5000"));
