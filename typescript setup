@@ -9,3 +9,7 @@ to compile ts to js ->  tsc
      "outDir": "./dist",                             
     "rootDir": "./src",   
      "target": "es6",         
+     
+     
+       "type": "module",//package.json
+
