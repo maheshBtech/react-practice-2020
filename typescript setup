@@ -1,0 +1,5 @@
+install typescript globally (check tsc -v)
+npm init (-y) for default
+npm install @types/node @types/express
+to make tsconfig file tsc --init
+to compile ts to js ->  tsc
