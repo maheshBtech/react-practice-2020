@@ -64,3 +64,16 @@
     
 </body>
 </html>
+
+import { Tabs, Tab, AppBar } from "@material-ui/core";
+<AppBar position="static" color="default" >
+                        <Tabs TabIndicatorProps={{style: {background:'#1a73e8'}}} value={selectedTab} onChange={(e, val) => setSelectedTab(val)}>
+                            <Tab label={  <li >All<span className="tabSectionChildSix">100</span></li>} />
+                            <Tab label={  <li >Orders In Progress<span className="tabSectionChildOne">20</span></li>} />
+                            <Tab label={  <li >Orders Pending<span className="tabSectionChildTwo">20</span></li>} />
+                            <Tab label={  <li >Delivered<span className="tabSectionChildThree">20</span></li>} />
+                            <Tab label={  <li >Completed<span className="tabSectionChildFour">20</span></li>} />
+                            <Tab label={  <li >Draft<span className="tabSectionChildFive">20</span></li>} />
+                           
+                        </Tabs>
+                    </AppBar>
