@@ -330,3 +330,9 @@ app.post("/save", upload.array("file"), async (req, res) => {
 });
 app.listen(1200, () => console.log("server is running at port 1200"));
 
+  //  let arryData = []
+        // let  temp = await configReader()
+        // .fromStream(request.get('https://application-onboarding.s3.eu-central-1.amazonaws.com/formFields.csv'))
+        // .subscribe((json)=>{
+        //     arryData.push(json);
+        // });
