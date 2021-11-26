@@ -1,0 +1,332 @@
+// const express = require("express");
+// const app = express();
+// const fs = require("fs")
+// const path = require('path')
+// const cors = require("cors");
+// const multer = require("multer");
+// const configReader = require("csvtojson/v2");
+// const AWS = require('aws-sdk');
+// const multers3 = require('multer-s3');
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+// app.use(cors());
+// const s3 = new AWS.S3({ apiVersion: '2006-03-01'})
+// const uploads3 = multer({
+//     storage:multers3({
+//         s3,
+//         bucket:"bucket-name",
+//         metadata:(req, file, cb) =>{
+//             cb(null,{fieldName:file.fieldname})
+//         },
+//         key:(req, file, cb)=>{
+//             const ext = path.extname(file.originalname);
+//             cb(null, `${file.originalname}`)
+//         }
+//     })
+// })
+// const upload = multer({
+//     storage: multer.diskStorage({
+//         destination: (req, file, cb) => {
+//           cb(null, `${__dirname}/./uploadedFiles`);
+//         },
+//         filename: (req, file, cb) => {
+//           cb(null, file.originalname);
+//         },
+//       }) });
+// app.post("/save", uploads3.array("file"), async (req, res) => {
+//   try {
+//     let data = {};
+//     let fileNames = [];
+//     let files = req.files;
+//     const { name,redirectURI,url } = req.body;
+//     // fileDetails = req.file.location
+//     const formFields = (val) => {
+//         let fields = [];
+//         val.map((i) => {
+//           fields.push({
+//             [i.title]: {
+//               steps: [
+//                 {
+//                   name: i.name,
+//                   fields: [
+//                     {
+//                       name: i.fieldName,
+//                       placeholder: i.placeholder,
+//                       label: i.label,
+//                       validations: {
+//                         reqired: i.required,
+//                         ...(i["max"] && { max: i.max }),
+//                         ...(i["min"] && { min: i.min }),
+//                       },
+//                       type: i.type,
+//                       values: i.values,
+//                     },
+//                   ],
+//                   submitButtonLabel: i.submitButtonLabel,
+//                 },
+//               ],
+//               redirectURI: i.redirextURL,
+//             },
+//           });
+//         });
+//         data["fields"] = JSON.stringify({ ...fields });
+//       };
+//       const idmMapping = (val) => {
+//         val.map((i) => {
+//           data["mapping_json"] = JSON.stringify(i);
+//         });
+//       };
+//       //loading data from body
+//     if( name && redirectURI && url )
+//     {
+//         data['name'] = name;
+//         data['redirectURI'] = redirectURI;
+//         data['url'] = JSON.stringify(url);
+//     }
+//     else{
+//         return res.status(401).send({msg:"Some fields are missing!"})
+//     }
+//     //loading data from files
+//     if (files.length !== 2) {
+//       return res
+//         .status(400)
+//         .send({ msg: "you should uplode exactely two sheets!." });
+//     }else {
+//       let arr = [];
+//       files.forEach((i) => {
+//         fileNames.push(i.filename)
+//         arr.push(
+//           configReader().fromFile(`${__dirname}/./uploadedFiles/${i.filename}`)
+//         );
+//       });
+//       Promise.all(arr).then((val) => {
+//         val.forEach((i) => {
+//           let item = i[0];
+//           let sheet = "";
+//           if ("title" in item && "name" in item && "fieldName" in item) {
+//             sheet = "FORM_FIELDS";
+//           } else if ("country" in item && "password" in item && "validationId" in item) {
+//             sheet = "IDM_MAPPING";
+//           }
+//           switch (sheet) {
+//             case "FORM_FIELDS":
+//               return formFields(i);
+//             case "IDM_MAPPING":
+//               return idmMapping(i);
+//             default:
+//                 return res.status(401).send({msg:"Some fields are missing in the sheets!"})
+//           }
+//         });
+//         //deleting the loaded files
+//         if(fileNames.length != 0)
+//         {
+//             fileNames.forEach( i =>{
+//                 fs.unlink(`${__dirname}/./uploadedFiles/${i}`, (err) => {
+//                     if (err) {
+//                         console.log("file is not deleted", err)
+//                     }
+//                     else {
+//                         console.log("file deleted")
+//                     }
+//                 })
+//             })
+//         }
+//         return res.send(data);
+//       });
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).send(err);
+//   }
+// });
+// app.listen(1200, () => console.log("server is running at port 1200"));
+
+const express = require("express");
+const app = express();
+const path = require('path')
+const cors = require("cors");
+const multer = require("multer");
+const configReader = require("csvtojson/v2");
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cors());
+
+
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+          cb(null, `${__dirname}/./uploadedFiles`);
+        },
+        filename: (req, file, cb) => {
+          cb(null, file.originalname);
+        },
+      }) });
+
+app.post("/save", upload.array("file"), async (req, res) => {
+    try {
+
+        let data = {};
+
+        let files = req.files;
+        const { name,redirectURI,url } = req.body;
+
+        const formFields = (val) => {
+            let arrayFields = [];
+
+            val.map(  (i) => {
+
+                const findOne =   arrayFields.length !==0 ? arrayFields.find(j =>j[i.title]?.steps[0].name === i.name ) : undefined;
+
+                if(findOne)
+                {
+                   let objj =   findOne[i.title].steps[0].fields.find(k=> k.name === i.fieldName && k.type === "dropdown");
+
+                   if(objj)
+                   {
+                    objj.values.push({ value:i.value, key:i.key  })
+                   }
+                   else{
+                    let field = {
+                        name: i.fieldName,
+                        placeholder: i.placeholder,
+                        label: i.label,
+                        validations: {
+                          reqired: i.required,
+                          ...i["max"] && { max: i.max },
+                          ...i["min"] && { min: i.min },
+                        },
+                        type: i.type,
+
+                         values:i['type'] === 'dropdown' ? [{
+                                      value:i.value,
+                                      key:""
+                                  }]:"",
+                     }
+
+                         arrayFields =  arrayFields.map(obj => obj[i.title]?.steps[0].name === i.name ? { ...obj,...obj[i.title].steps[0].fields.push(field) } :obj)
+                   }
+                }else{
+
+                    arrayFields.push({
+                        [i.title]: {
+                          steps: [
+                            {
+                              name: i.name,
+                              fields: [
+                                {
+                                  name: i.fieldName,
+                                  placeholder: i.placeholder,
+                                  label: i.label,
+                                  validations: {
+                                    reqired: i.required,
+                                    ...i["max"] && { max: i.max },
+                                    ...i["min"] && { min: i.min },
+                                  },
+                                  type: i.type,
+                                  values:i['type'] === 'dropdown' ? [{
+                                      value:i.value,
+                                      key:""
+                                  }]:"",
+                                }
+                
+                              ],
+                              submitButtonLabel: i.submitButtonLabel,
+                            },
+                          ],
+                          redirectURI: i.redirextURL,
+                        },
+                      });
+                }
+            });
+
+            data["fields"] = JSON.stringify([ ...arrayFields] );
+            // data["fields"] =  arrayFields ;
+
+          };
+    
+          const idmMapping = (val) => {
+              let idmMappingTemplate;
+            val.map((i) => {
+                idmMappingTemplate = {
+                    country:i.country,
+                    password:i.password,
+                    validationId:i.validationId,
+                    mobile:i.mobile,
+                    fullname:i.fullname,
+                    title:i.title,
+                    email:i.email,
+                    firstname:i.firstname,
+                    lastname:i.lastname,
+                    postalcode:i.postalcode,
+                    speciality:i.speciality
+                }
+            });
+            data["mapping_json"] = JSON.stringify(idmMappingTemplate);
+          };
+
+          //loading data from body
+        if( name && redirectURI && url )
+        {
+            data['name'] = name;
+            data['redirectURI'] = redirectURI;
+            data['url'] = JSON.parse( url ) ;
+
+        }
+        else{
+            return res.status(401).send({msg:"Some fields are missing!"})
+        }
+    
+        //loading data from files
+        if (files.length !== 2) {
+          return res
+            .status(400)
+            .send({ msg: "you should uplode exactely two sheets!." });
+        }else {
+    
+          let arr = [];
+         
+          files.forEach((i) => {
+
+            arr.push(configReader().
+                        fromFile(`${__dirname}/./uploadedFiles/${i.filename}`)
+                        );
+
+          });
+
+          Promise.all(arr).then(async(val) => {
+            val.forEach((i) => {
+
+              let item = i[0];
+            
+              let sheet = "";
+              if ("title" in item && "name" in item && "fieldName" in item) {
+                sheet = "FORM_FIELDS";
+              } 
+              else if ("country" in item && "password" in item && "validationId" in item) {
+                sheet = "IDM_MAPPING";
+              }
+              switch (sheet) {
+                case "FORM_FIELDS":
+                  return formFields(i);
+                case "IDM_MAPPING":
+                  return idmMapping(i);
+                default:
+                    return res.status(401).send({msg:"Some fields are missing in the sheets!!"})
+
+              }
+            });   
+            
+            return res.send(data);
+          });
+          
+        }
+
+    } catch (err) {
+    console.log(err);
+    return res.status(500).send(err);
+  }
+});
+app.listen(1200, () => console.log("server is running at port 1200"));
+
