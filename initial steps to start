@@ -4,4 +4,5 @@ Initially install node
 And then install angular cli with the command -->npm install -g @angular/cli 
 To check the version of angular cli -->ng v 
 To create new angular project --> ng new <project name>
+to change port number --> ng serve --port 3000
 
