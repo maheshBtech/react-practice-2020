@@ -6,3 +6,16 @@ To check the version of angular cli -->ng v
 To create new angular project --> ng new <project name>
 to change port number --> ng serve --port 3000
 
+routes:
+const routes: Routes = [
+
+  {path:'',component:DashboardComponent},
+  {path:'first/:id',component:ModuleOneComponent},
+  {path:'second',component:ModuleTwoComponent},
+  {path:'third/:name',component:ModuleThreeComponent},
+  {path:"not-found",component:NotFoundComponent},
+  {path:'form',component:FormComponent},
+  {path:'track-transaction',component:TrackTansactionComponent},
+  {path:"**",redirectTo:'/not-found'},
+
+];
