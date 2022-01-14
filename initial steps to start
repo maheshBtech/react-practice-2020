@@ -19,3 +19,13 @@ const routes: Routes = [
   {path:"**",redirectTo:'/not-found' pathMath:'full'}, wildcard path
 
 ];
+
+
+#############################
+to add bootstrap
+in global style.css file ==>@import '~bootstrap/dist/css/bootstrap.min.css';
+2.add CDN to index.html
+3.ng add @ng-bootstrap/ng-bootstrap
+
+######################
+make strict: false in compiler option
