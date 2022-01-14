@@ -9,13 +9,13 @@ to change port number --> ng serve --port 3000
 routes:
 const routes: Routes = [
 
-  {path:'',component:DashboardComponent},
+  {path:'',component:DashboardComponent redirectTo:'/form' pathMath:'full'}, redirecting
   {path:'first/:id',component:ModuleOneComponent},
   {path:'second',component:ModuleTwoComponent},
   {path:'third/:name',component:ModuleThreeComponent},
   {path:"not-found",component:NotFoundComponent},
   {path:'form',component:FormComponent},
   {path:'track-transaction',component:TrackTansactionComponent},
-  {path:"**",redirectTo:'/not-found'},
+  {path:"**",redirectTo:'/not-found' pathMath:'full'}, wildcard path
 
 ];
