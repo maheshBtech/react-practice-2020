@@ -29,3 +29,20 @@ in global style.css file ==>@import '~bootstrap/dist/css/bootstrap.min.css';
 
 ######################
 make strict: false in compiler option
+
+######################
+ this.sampleForm.setValue({
+      email:"mahesh@gmail.com",
+      password:"asdas"
+    })
+    
+     this.sampleForm.patchValue({
+      email:"mahesh@gmail.com",
+    })
+    
+    this.sampleForm.reset()
+    
+ #######################################
+ value change
+ status change
+ 
