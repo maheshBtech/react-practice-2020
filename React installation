@@ -1,1 +1,5 @@
+ES5 + advanced feature  = ECMA script ES6
+Transpiler(Babel,traceur,typescript) will generates ES5 code with ES6 code which will run in all the  browsers 
+
+
 
