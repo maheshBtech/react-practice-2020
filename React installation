@@ -1,5 +1,13 @@
 ES5 + advanced feature  = ECMA script ES6
 Transpiler(Babel,traceur,typescript) will generates ES5 code with ES6 code which will run in all the  browsers 
+rest operater
+spread operater
+destructuring objects
+Interface : interfces are likely used to create types
+sets,maps 
+Enumeration : enum to used to create custom type where we can specify list of values that a variable can hold
+decoraters: decoraters are nothing but special kind of declaration which is attached to class, methods or properties
+selector is nothing but a html custom tag, whenever this custom tag is encounter the template html will be replaced.
 
 
 
