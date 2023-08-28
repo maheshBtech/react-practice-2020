@@ -9,5 +9,8 @@ Enumeration : enum to used to create custom type where we can specify list of va
 decoraters: decoraters are nothing but special kind of declaration which is attached to class, methods or properties
 selector is nothing but a html custom tag, whenever this custom tag is encounter the template html will be replaced.
 
+==================================================
+React is an open source library fo building user interface
+
 
 
