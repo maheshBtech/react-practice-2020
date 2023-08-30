@@ -34,6 +34,13 @@ componentWillunmount
 static getDerivedstatefromProps
 componentDidCatch
 
+===============
+Fragments => react.fragments are used to remove the unnessery tags
+pure component => pure component implementes shouldComponentUpdate with shallow props and state comparison
+React.memo is nothing but pure component in functional component
+React.createRef is used to focus on the input, to fetch input values
+
+
 
 
 
