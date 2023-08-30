@@ -13,6 +13,7 @@ selector is nothing but a html custom tag, whenever this custom tag is encounter
 React is an open source library fo building user interface
 npx create-react-app my-app  =>  is the cmd to create react project
 npm init  =>  is use to create a package.json file
+Key is a special string attribute that you need to include when creating list of elements
 
 
 
