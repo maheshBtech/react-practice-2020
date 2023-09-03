@@ -5,6 +5,9 @@ spread operater
 destructuring objects
 Interface : interfces are likely used to create types
 sets,maps 
+Set is a datastructure which contains a list of values that are unique
+Maps will contain a set of key pair values
+
 Enumeration : enum to used to create custom type where we can specify list of values that a variable can hold
 decoraters: decoraters are nothing but special kind of declaration which is attached to class, methods or properties
 selector is nothing but a html custom tag, whenever this custom tag is encounter the template html will be replaced.
