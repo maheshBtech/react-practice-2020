@@ -7,6 +7,11 @@ Interface : interfces are likely used to create types
 sets,maps 
 Set is a datastructure which contains a list of values that are unique
 Maps will contain a set of key pair values
+Arrays(Tuples)
+let a:string[] = ['ji']
+let b:Array<String> = ['ji']
+let c:any[] = ['ki']
+tuples: let aa: [strings,numbers] = ['hi',1]
 
 Enumeration : enum to used to create custom type where we can specify list of values that a variable can hold
 decoraters: decoraters are nothing but special kind of declaration which is attached to class, methods or properties
