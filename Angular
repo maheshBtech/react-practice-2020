@@ -1,1 +1,14 @@
+Module: 
+Collection of components, services, directives, pipes is called module.
+easy to maintain, easy to debug.
 
+Decorators:
+decorators are typescript feature which is used to pass metadata
+decorators are invoked at run time
+
+class decotators @NgModule,@component
+property decorators @Input, @Output
+method decorstors @hostListeners
+parameters decorators @inject
+
+angular directives are defined as classes that can add new behavior to the elements in the template or modifiy existing bahaviour
