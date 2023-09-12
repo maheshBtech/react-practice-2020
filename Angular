@@ -12,3 +12,38 @@ method decorstors @hostListeners
 parameters decorators @inject
 
 angular directives are defined as classes that can add new behavior to the elements in the template or modifiy existing bahaviour
+Component Directives
+Structural Directives ngif,ngswitch,ngfor
+Attribute Directives ngStyle,ngClass
+
+ngIf if else
+we need to create ng-template reference variable if else condition
+<div *ngIf="false else showElsePart"></div>
+<ng-template #showElsePart></ng-template>
+
+databinding
+oneway data binding=> 
+(component to View)interpolation,propertyBinding,styleBInding,attribute Binding
+(view to Component) event binding
+interpolation => it's a technique used to bind the data from component.ts to view,({{}})
+propertyBindling => to bind property of element from component to view ([ngStyle],[ngClass],[src],[innerHTML],[placeholder],[href])
+attributeBindling => to add custom property ([attr.updatehref]='anything')
+twoway databinding =>[(ngModel)]='variableName'
+
+Pipes are used to transform the data (|)
+Built in pipes ()(lowercase,UpperCase,date,currency,json)
+Parametrized pipes
+Chaining Pipes (adding multiple pipes is known as multple pipes)
+Custom Pipes
+
+Routing helps us to disply specific view of the application depending on the URL path
+
+Interceptors allow you to modify the request or response before it is sent or received by the server
+
+
+
+
+
+
+
+
